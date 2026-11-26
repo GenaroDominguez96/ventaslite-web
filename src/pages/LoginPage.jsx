@@ -9,7 +9,7 @@ function LoginPage() {
   const location = useLocation()
 
   const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
+  const [password, setPassword] = useState('contraseña')
   const [error, setError] = useState('')
   const [submitting, setSubmitting] = useState(false)
 
@@ -55,7 +55,9 @@ function LoginPage() {
         <form onSubmit={handleSubmit} className="space-y-5">
           <div>
             <label htmlFor="email" className="mb-2 block text-sm font-semibold text-slate-700">
-              Correo electrónico
+              Correo electrónico 
+              <small className="block text-xs text-slate-300">admin: admin@ventaslite.com</small>
+              <small className="block text-xs text-slate-300">vendedores (1-8): vendedor1@ventaslite.com, vendedor2@ventaslite.com, etc.</small>
             </label>
             <div className="relative">
               <Mail size={17} className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
@@ -76,6 +78,7 @@ function LoginPage() {
           <div>
             <label htmlFor="password" className="mb-2 block text-sm font-semibold text-slate-700">
               Contraseña
+              <small className="block text-xs text-slate-300">default: contraseña</small>
             </label>
             <div className="relative">
               <LockKeyhole size={17} className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
