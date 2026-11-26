@@ -184,7 +184,7 @@ function SalesPage() {
           <h2 className="text-sm font-bold text-slate-800">Filtros de búsqueda</h2>
         </div>
 
-        <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-5">
+        <div className={isAdmin ? 'grid gap-3 sm:grid-cols-2 xl:grid-cols-5' : 'grid gap-3 sm:grid-cols-2 xl:grid-cols-4'}>
           <label className="block">
             <span className="mb-1.5 block text-[11px] font-semibold text-slate-600">Fecha inicial</span>
             <div className="relative">
