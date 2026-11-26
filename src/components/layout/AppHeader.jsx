@@ -1,4 +1,4 @@
-import { Bell, ChevronDown, Menu, Search } from 'lucide-react'
+import { LogOut, Menu } from 'lucide-react'
 
 function AppHeader({ onOpenMenu }) {
   return (
@@ -24,36 +24,22 @@ function AppHeader({ onOpenMenu }) {
         </div>
       </div>
 
-      <div className="flex items-center gap-2 md:gap-4">
-        <div className="hidden h-9 w-56 items-center gap-2 rounded-lg border border-slate-200 bg-slate-50 px-3 md:flex">
-          <Search size={15} className="text-slate-400" />
-          <span className="text-xs text-slate-400">Buscar en el sistema...</span>
-          <span className="ml-auto rounded border bg-white px-1.5 py-0.5 text-[10px] text-slate-400">
-            ⌘ K
-          </span>
+      <div className="flex items-center gap-3">
+        <div className="flex h-8 w-8 items-center justify-center rounded-full bg-blue-100 text-[11px] font-bold text-blue-700">
+          A
         </div>
-
+        <span className="hidden text-left sm:block">
+          <span className="block text-xs font-semibold text-slate-700">Administrador</span>
+          <span className="block text-[10px] text-slate-400">Usuario de demostración</span>
+        </span>
         <button
           type="button"
-          aria-label="Notificaciones (demostración)"
-          className="relative rounded-lg p-2 text-slate-500 hover:bg-slate-100"
+          aria-label="Cerrar sesión"
+          className="inline-flex items-center gap-2 rounded-lg border border-slate-200 px-3 py-2 text-xs font-medium text-slate-600 hover:bg-slate-50"
         >
-          <Bell size={19} />
-          <span className="absolute right-2 top-2 h-1.5 w-1.5 rounded-full bg-red-500 ring-2 ring-white" />
+          <LogOut size={15} />
+          <span className="hidden sm:inline">Salir</span>
         </button>
-
-        <div className="hidden h-8 border-l border-slate-200 sm:block" />
-
-        <div className="flex items-center gap-2 rounded-lg p-1.5">
-          <div className="flex h-8 w-8 items-center justify-center rounded-full bg-blue-100 text-[11px] font-bold text-blue-700">
-            GA
-          </div>
-          <span className="hidden text-left sm:block">
-            <span className="block text-xs font-semibold text-slate-700">Genaro Admin</span>
-            <span className="block text-[10px] text-slate-400">Administrador · Demo</span>
-          </span>
-          <ChevronDown size={14} className="hidden text-slate-400 sm:block" />
-        </div>
       </div>
     </header>
   )
