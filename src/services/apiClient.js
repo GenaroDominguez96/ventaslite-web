@@ -9,7 +9,14 @@ const apiClient = axios.create({
   timeout: 15000,
 })
 
-// La autenticación y los interceptores se agregarán cuando se implemente el login.
-// Este cliente no ejecuta solicitudes automáticamente.
+apiClient.interceptors.request.use((config) => {
+  const token = localStorage.getItem('ventaslite_token')
+
+  if (token) {
+    config.headers.Authorization = `Bearer ${token}`
+  }
+
+  return config
+})
 
 export default apiClient
