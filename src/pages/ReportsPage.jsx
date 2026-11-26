@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from 'react'
-import { Download, LoaderCircle } from 'lucide-react'
+import { Download, LoaderCircle, Sparkles } from 'lucide-react'
 import {
   Bar,
   BarChart,
@@ -70,6 +70,10 @@ function ReportsPage() {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
   const [exporting, setExporting] = useState('')
+  const [assistantQuestion, setAssistantQuestion] = useState('')
+  const [assistantAnswer, setAssistantAnswer] = useState('')
+  const [assistantError, setAssistantError] = useState('')
+  const [assistantLoading, setAssistantLoading] = useState('')
 
   const loadReports = useCallback(async () => {
     setLoading(true)
@@ -146,6 +150,36 @@ function ReportsPage() {
     }
   }
 
+  const runAssistant = async (mode) => {
+    const question = assistantQuestion.trim()
+    if (mode === 'question' && !question) return
+
+    setAssistantLoading(mode)
+    setAssistantError('')
+    setAssistantAnswer('')
+
+    try {
+      const params = reportParams(appliedFilters)
+      const response = mode === 'summary'
+        ? await reportsService.getExecutiveSummary(params)
+        : await reportsService.askAssistant({ ...params, question })
+
+      setAssistantAnswer(response.data?.answer || '')
+    } catch (requestError) {
+      setAssistantError(
+        requestError.response?.data?.message
+          || 'No fue posible consultar el asistente de IA.',
+      )
+    } finally {
+      setAssistantLoading('')
+    }
+  }
+
+  const submitAssistantQuestion = (event) => {
+    event.preventDefault()
+    runAssistant('question')
+  }
+
   const topChartData = topProducts.map((product) => ({
     ...product,
     chartValue: topBy === 'amount' ? Number(product.amount_sold) : Number(product.units_sold),
@@ -166,6 +200,71 @@ function ReportsPage() {
       />
 
       <ReportFilters value={filters} branches={branches} onChange={updateFilter} onSubmit={applyFilters} />
+
+      <ReportSection
+        title="Asistente de IA"
+        description="Consulta los resultados del periodo filtrado o genera un resumen ejecutivo."
+      >
+        <div className="p-4 md:p-5">
+          <form onSubmit={submitAssistantQuestion}>
+            <label htmlFor="report-assistant-question" className="mb-2 block text-xs font-semibold text-slate-700">
+              ¿Qué deseas conocer de tus ventas?
+            </label>
+            <textarea
+              id="report-assistant-question"
+              value={assistantQuestion}
+              onChange={(event) => setAssistantQuestion(event.target.value)}
+              maxLength={1000}
+              rows={3}
+              placeholder="Ej. ¿Qué sucursal tuvo más ventas en el periodo?"
+              className="w-full resize-y rounded-xl border border-slate-200 px-3 py-3 text-sm text-slate-700 outline-none placeholder:text-slate-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
+            />
+            <div className="mt-3 flex flex-wrap justify-end gap-2">
+              <button
+                type="submit"
+                disabled={!assistantQuestion.trim() || Boolean(assistantLoading)}
+                className="inline-flex items-center gap-2 rounded-xl bg-slate-900 px-4 py-2.5 text-xs font-semibold text-white hover:bg-slate-800 disabled:cursor-not-allowed disabled:opacity-50"
+              >
+                {assistantLoading === 'question' ? 'Consultando...' : 'Consultar'}
+              </button>
+              <button
+                type="button"
+                onClick={() => runAssistant('summary')}
+                disabled={Boolean(assistantLoading)}
+                className="inline-flex items-center gap-2 rounded-xl border border-slate-200 px-4 py-2.5 text-xs font-semibold text-slate-700 hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-50"
+              >
+                <Sparkles size={14} />
+                {assistantLoading === 'summary' ? 'Generando...' : 'Resumen ejecutivo'}
+              </button>
+            </div>
+          </form>
+
+          {assistantLoading && (
+            <div className="mt-4 flex items-center gap-2 text-xs text-slate-400" role="status">
+              <LoaderCircle size={15} className="animate-spin" />
+              Procesando información del periodo...
+            </div>
+          )}
+
+          {assistantError && (
+            <p role="alert" className="mt-4 rounded-xl border border-amber-100 bg-amber-50 px-4 py-3 text-xs text-amber-800">
+              {assistantError}
+            </p>
+          )}
+
+          {assistantAnswer && (
+            <div className="mt-4 rounded-xl border border-blue-100 bg-blue-50/50 p-4">
+              <div className="mb-2 flex items-center gap-2 text-xs font-bold text-blue-900">
+                <Sparkles size={14} />
+                Respuesta
+              </div>
+              <p className="whitespace-pre-line text-sm leading-6 text-slate-700" aria-live="polite">
+                {assistantAnswer}
+              </p>
+            </div>
+          )}
+        </div>
+      </ReportSection>
 
       {error && (
         <p role="alert" className="mb-5 rounded-xl border border-rose-100 bg-rose-50 px-4 py-3 text-xs text-rose-700">
