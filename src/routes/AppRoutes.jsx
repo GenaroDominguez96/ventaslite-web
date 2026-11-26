@@ -1,20 +1,10 @@
 import { Navigate, Route, Routes } from 'react-router-dom'
 import AppLayout from '../components/layout/AppLayout'
-import ModulePlaceholder from '../components/common/ModulePlaceholder'
 import DashboardPage from '../pages/DashboardPage'
 import LoginPage from '../pages/LoginPage'
+import ReportsPage from '../pages/ReportsPage'
 import SalesPage from '../pages/SalesPage'
 import { GuestOnly, RequireAuth } from './RouteGuards'
-
-function ReportsPage() {
-  return (
-    <ModulePlaceholder
-      title="Reportes"
-      section="Análisis"
-      description="Consulta los reportes de ventas y el asistente de IA del periodo seleccionado."
-    />
-  )
-}
 
 function AppRoutes() {
   return (
