@@ -11,6 +11,7 @@ function SaleDetailModal({ saleId, canCancel, onClose, onChanged }) {
   const [sale, setSale] = useState(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
+  const [successMessage, setSuccessMessage] = useState('')
   const [confirmCancel, setConfirmCancel] = useState(false)
   const [cancelling, setCancelling] = useState(false)
 
@@ -40,6 +41,7 @@ function SaleDetailModal({ saleId, canCancel, onClose, onChanged }) {
     try {
       const response = await salesService.cancelSale(saleId)
       setSale(response.data)
+      setSuccessMessage('Venta cancelada y existencias devueltas correctamente.')
       setConfirmCancel(false)
       onChanged()
     } catch (requestError) {
@@ -154,6 +156,12 @@ function SaleDetailModal({ saleId, canCancel, onClose, onChanged }) {
 
           {error && sale && (
             <p role="alert" className="mt-4 rounded-xl bg-rose-50 px-4 py-3 text-xs text-rose-700">{error}</p>
+          )}
+
+          {successMessage && (
+            <p role="status" className="mt-4 rounded-xl border border-emerald-100 bg-emerald-50 px-4 py-3 text-xs font-medium text-emerald-700">
+              {successMessage}
+            </p>
           )}
 
           {confirmCancel && (
