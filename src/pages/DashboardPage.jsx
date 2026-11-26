@@ -238,7 +238,43 @@ function DashboardPage() {
                   axisLine={false}
                   tickLine={false}
                   tick={{ fill: '#64748b', fontSize: 10 }}
-                  tickFormatter={(value) => `${new Intl.NumberFormat('es-MX', { notation: 'compact', maximumFractionDigits: 1 }).format(value)}`}
+                  tickFormatter={(value) => '
+                  label={{ value: 'Ventas (MXN)', angle: -90, position: 'insideLeft', fill: '#64748b', fontSize: 10 }}
+                  width={58}
+                />
+                <Tooltip
+                  formatter={(value) => [formatCurrency(value), 'Ventas']}
+                  labelFormatter={(label) => `Periodo: ${label}`}
+                  contentStyle={{
+                    border: '1px solid #e2e8f0',
+                    borderRadius: 12,
+                    fontSize: 12,
+                  }}
+                />
+                <Line
+                  type="monotone"
+                  dataKey="total"
+                  name="Ventas"
+                  stroke="#2563eb"
+                  strokeWidth={3}
+                  dot={{ r: 3, fill: '#2563eb', strokeWidth: 2, stroke: '#fff' }}
+                  activeDot={{ r: 5 }}
+                />
+              </LineChart>
+            </ResponsiveContainer>
+          )}
+        </div>
+
+        <p className="mt-3 text-right text-[10px] text-slate-400">
+          Importes en MXN. Las ventas canceladas no se incluyen.
+        </p>
+      </section>
+    </div>
+  )
+}
+
+export default DashboardPage
+ + new Intl.NumberFormat('es-MX', { notation: 'compact', maximumFractionDigits: 1 }).format(value)}
                   label={{ value: 'Ventas (MXN)', angle: -90, position: 'insideLeft', fill: '#64748b', fontSize: 10 }}
                   width={58}
                 />
