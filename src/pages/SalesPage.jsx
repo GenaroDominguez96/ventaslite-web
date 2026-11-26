@@ -5,7 +5,6 @@ import {
   ChevronRight,
   Eye,
   Filter,
-  LoaderCircle,
   Plus,
   RotateCcw,
 } from 'lucide-react'
