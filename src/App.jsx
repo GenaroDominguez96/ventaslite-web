@@ -127,7 +127,7 @@ function Dashboard() {
       <section className="rounded-2xl border border-slate-200/80 bg-white p-5 shadow-sm shadow-slate-200/30 md:p-6">
         <div className="mb-5 flex items-center justify-between"><div><h2 className="text-sm font-bold text-slate-800">Ventas por sucursal</h2><p className="mt-1 text-xs text-slate-400">Distribución ilustrativa</p></div><span className="text-[10px] font-semibold text-slate-400">DEMO</span></div>
         <div className="space-y-5 pt-2">
-          {[['Toluca',42,'$539,498'],['Metepec',28,'$359,666'],['Lerma',19,'$243,?58'],['Zinacantepec',11,'$141,297']].map(([name,pct,total])=><div key={name}><div className="mb-2 flex justify-between text-xs"><span className="font-medium text-slate-700">{name}</span><span className="font-semibold text-slate-600">{total}</span></div><div className="h-2 overflow-hidden rounded-full bg-slate-100"><div className="h-full rounded-full bg-blue-600" style={{ width: `${pct}%` }}/></div><p className="mt-1 text-[10px] text-slate-400">{pct}% de las ventas</p></div>)}
+          {[['Toluca',42,'$539,498'],['Metepec',28,'$359,666'],['Lerma',19,'$244,059'],['Zinacantepec',11,'$141,297']].map(([name,pct,total])=><div key={name}><div className="mb-2 flex justify-between text-xs"><span className="font-medium text-slate-700">{name}</span><span className="font-semibold text-slate-600">{total}</span></div><div className="h-2 overflow-hidden rounded-full bg-slate-100"><div className="h-full rounded-full bg-blue-600" style={{ width: `${pct}%` }}/></div><p className="mt-1 text-[10px] text-slate-400">{pct}% de las ventas</p></div>)}
         </div>
       </section>
     </div>
