@@ -213,7 +213,7 @@ function ReportsPage() {
                 report="top-products"
                 onExport={exportReport}
                 exporting={exporting}
-                disabled={loading || topProducts.length === 0}
+                disabled={loading}
               />
             </div>
           )}
@@ -266,7 +266,7 @@ function ReportsPage() {
               report="sellers"
               onExport={exportReport}
               exporting={exporting}
-              disabled={loading || sellers.length === 0}
+              disabled={loading}
             />
           )}
         >
@@ -353,7 +353,7 @@ function ReportsPage() {
               report="margins"
               onExport={exportReport}
               exporting={exporting}
-              disabled={loading || margins.length === 0}
+              disabled={loading}
             />
           )}
         >
