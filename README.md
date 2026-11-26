@@ -1,16 +1,46 @@
-# React + Vite
+# VentasLite Web
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+Frontend de VentasLite construido con React 18, Vite y Tailwind CSS 4.
 
-Currently, two official plugins are available:
+## Requisitos
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- Node.js 20.19+ o 22.12+
+- npm
 
-## React Compiler
+## Instalación local
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+1. Instalar dependencias:
 
-## Expanding the Oxlint configuration
+   ```bash
+   npm install
+   ```
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+2. Crear el archivo de variables locales:
+
+   ```bash
+   cp .env.example .env
+   ```
+
+3. Iniciar Vite:
+
+   ```bash
+   npm run dev
+   ```
+
+## Scripts
+
+- `npm run dev`: servidor local.
+- `npm run build`: compilación de producción.
+- `npm run preview`: vista previa de la compilación.
+- `npm run lint`: análisis estático.
+
+## Configuración
+
+- `VITE_APP_NAME`: nombre de la aplicación.
+- `VITE_API_URL`: URL base de la API Laravel.
+
+No almacenar secretos ni API keys en variables `VITE_*`; se exponen al navegador.
+
+## Estado
+
+El layout administrativo y las pantallas de navegación utilizan datos ilustrativos. La integración con la API y la lógica funcional se implementarán en etapas posteriores.
