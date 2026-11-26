@@ -87,8 +87,15 @@ La pantalla Ventas consume los catálogos y endpoints protegidos del backend:
 
 Los importes se calculan y validan en el backend; el frontend solo muestra una vista previa del subtotal, IVA y total. La autorización por vendedor también se aplica en la API.
 
+## Reportes
+
+Dashboard y Reportes consultan los datos agregados de la API. El rango de fechas inicial cubre los últimos 12 meses y se puede modificar junto con la sucursal.
+
+- Dashboard: ventas totales, número de ventas, ticket promedio, cambio contra el periodo anterior y ventas por mes.
+- Reportes: top 10 de productos por unidades o importe, ranking de vendedores, tabla cruzada de sucursal por categoría y margen bruto por categoría.
+- Cada reporte tiene exportación CSV.
+- El backend aplica el alcance por rol y excluye las ventas canceladas; el frontend no suma el detalle de las ventas para construir indicadores.
+
 ## Estado actual
 
-El frontend contiene login, protección de rutas, layout administrativo, dashboard demostrativo y el módulo de Ventas conectado a la API. El módulo de Reportes y el asistente de IA permanecen pendientes.
-
-Los datos del dashboard son ficticios y no representan operaciones reales.
+El frontend contiene login, protección de rutas, layout administrativo, dashboard y reportes conectados a la API, además del módulo de Ventas. El asistente de IA y el despliegue público permanecen pendientes.
