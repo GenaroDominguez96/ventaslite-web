@@ -1,6 +1,25 @@
 import { LogOut, Menu } from 'lucide-react'
+import { useNavigate } from 'react-router-dom'
+import { useAuth } from '../../context/AuthContext'
 
 function AppHeader({ onOpenMenu }) {
+  const { user, logout } = useAuth()
+  const navigate = useNavigate()
+
+  const handleLogout = async () => {
+    await logout()
+    navigate('/login', { replace: true })
+  }
+
+  const roleLabel = user?.role === 'admin' ? 'Administrador' : 'Vendedor'
+  const initials = user?.name
+    ?.split(' ')
+    .filter(Boolean)
+    .slice(0, 2)
+    .map((part) => part[0])
+    .join('')
+    .toUpperCase() || 'U'
+
   return (
     <header className="sticky top-0 z-20 flex h-[76px] items-center justify-between border-b border-slate-200/80 bg-white/90 px-4 backdrop-blur md:px-8">
       <div className="flex items-center gap-3">
@@ -26,14 +45,15 @@ function AppHeader({ onOpenMenu }) {
 
       <div className="flex items-center gap-3">
         <div className="flex h-8 w-8 items-center justify-center rounded-full bg-blue-100 text-[11px] font-bold text-blue-700">
-          A
+          {initials}
         </div>
         <span className="hidden text-left sm:block">
-          <span className="block text-xs font-semibold text-slate-700">Administrador</span>
-          <span className="block text-[10px] text-slate-400">Usuario de demostración</span>
+          <span className="block text-xs font-semibold text-slate-700">{user?.name}</span>
+          <span className="block text-[10px] text-slate-400">{roleLabel}</span>
         </span>
         <button
           type="button"
+          onClick={handleLogout}
           aria-label="Cerrar sesión"
           className="inline-flex items-center gap-2 rounded-lg border border-slate-200 px-3 py-2 text-xs font-medium text-slate-600 hover:bg-slate-50"
         >
