@@ -233,8 +233,15 @@ function ReportsPage() {
                     tickLine={false}
                     tick={{ fill: '#64748b', fontSize: 10 }}
                     tickFormatter={(value) => topBy === 'amount'
-                      ? `$${new Intl.NumberFormat('es-MX', { notation: 'compact', maximumFractionDigits: 1 }).format(value)}`
+                      ? `${new Intl.NumberFormat('es-MX', { notation: 'compact', maximumFractionDigits: 1 }).format(value)}`
                       : value}
+                    label={{
+                      value: topBy === 'amount' ? 'Importe vendido (MXN)' : 'Unidades vendidas',
+                      position: 'insideBottom',
+                      offset: -4,
+                      fill: '#64748b',
+                      fontSize: 10,
+                    }}
                   />
                   <YAxis
                     type="category"
@@ -368,7 +375,8 @@ function ReportsPage() {
                       axisLine={false}
                       tickLine={false}
                       tick={{ fill: '#64748b', fontSize: 10 }}
-                      tickFormatter={(value) => `$${new Intl.NumberFormat('es-MX', { notation: 'compact', maximumFractionDigits: 1 }).format(value)}`}
+                      tickFormatter={(value) => `${new Intl.NumberFormat('es-MX', { notation: 'compact', maximumFractionDigits: 1 }).format(value)}`}
+                      label={{ value: 'Utilidad bruta (MXN)', angle: -90, position: 'insideLeft', fill: '#64748b', fontSize: 10 }}
                       width={58}
                     />
                     <Tooltip
