@@ -1,8 +1,9 @@
+import { Outlet } from 'react-router-dom'
 import { useState } from 'react'
 import AppHeader from './AppHeader'
 import AppSidebar from './AppSidebar'
 
-function AppLayout({ children }) {
+function AppLayout() {
   const [menuOpen, setMenuOpen] = useState(false)
 
   const closeMenu = () => setMenuOpen(false)
@@ -15,7 +16,7 @@ function AppLayout({ children }) {
         <AppHeader onOpenMenu={() => setMenuOpen(true)} />
 
         <main className="px-4 py-7 md:px-8 md:py-9">
-          {children}
+          <Outlet />
         </main>
 
         <footer className="border-t border-slate-200/80 px-4 py-5 text-center text-[10px] text-slate-400 md:px-8">
