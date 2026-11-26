@@ -2,6 +2,11 @@
 
 Frontend de VentasLite construido con React 18, Vite 8 y Tailwind CSS 4.
 
+## URLs públicas
+
+- **Frontend:** https://ventaslite-web-production.up.railway.app
+- **Backend API:** https://ventaslite-api-production.up.railway.app/
+
 ## Requisitos
 
 - Node.js 20.19+ (Node 24 recomendado para este entorno).
@@ -108,4 +113,4 @@ Entregables de documentación:
 
 ## Estado actual
 
-El frontend contiene login, protección de rutas, layout administrativo, dashboard, ventas y reportes conectados a la API, incluido el asistente de IA y el resumen ejecutivo. El despliegue público y los entregables visuales y de demostración permanecen pendientes.
+El frontend contiene login, protección de rutas, layout administrativo, dashboard, ventas y reportes conectados a la API, incluido el asistente de IA y el resumen ejecutivo. El sistema está publicado en las URLs indicadas arriba; las capturas y el video demostrativo permanecen pendientes.
