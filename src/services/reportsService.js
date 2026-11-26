@@ -32,12 +32,16 @@ const reportsService = {
   },
 
   async askAssistant(data) {
-    const response = await apiClient.post('/reports/assistant', data)
+    const response = await apiClient.post('/reports/assistant', data, {
+      timeout: 75000,
+    })
     return response.data
   },
 
   async getExecutiveSummary(params) {
-    const response = await apiClient.post('/reports/executive-summary', params)
+    const response = await apiClient.post('/reports/executive-summary', params, {
+      timeout: 75000,
+    })
     return response.data
   },
 
