@@ -233,7 +233,7 @@ function ReportsPage() {
                     tickLine={false}
                     tick={{ fill: '#64748b', fontSize: 10 }}
                     tickFormatter={(value) => topBy === 'amount'
-                      ? `${new Intl.NumberFormat('es-MX', { notation: 'compact', maximumFractionDigits: 1 }).format(value)}`
+                      ? '
                       : value}
                     label={{
                       value: topBy === 'amount' ? 'Importe vendido (MXN)' : 'Unidades vendidas',
@@ -375,7 +375,272 @@ function ReportsPage() {
                       axisLine={false}
                       tickLine={false}
                       tick={{ fill: '#64748b', fontSize: 10 }}
-                      tickFormatter={(value) => `${new Intl.NumberFormat('es-MX', { notation: 'compact', maximumFractionDigits: 1 }).format(value)}`}
+                      tickFormatter={(value) => '
+                      label={{ value: 'Utilidad bruta (MXN)', angle: -90, position: 'insideLeft', fill: '#64748b', fontSize: 10 }}
+                      width={58}
+                    />
+                    <Tooltip
+                      formatter={(value) => [formatCurrency(value), 'Utilidad bruta']}
+                      contentStyle={{ border: '1px solid #e2e8f0', borderRadius: 12, fontSize: 12 }}
+                    />
+                    <Bar dataKey="chartValue" name="Utilidad bruta" fill="#0f766e" radius={[5, 5, 0, 0]} />
+                  </BarChart>
+                </ResponsiveContainer>
+              </div>
+              <div className="overflow-x-auto border-t border-slate-100">
+                <table className="w-full min-w-[440px] text-left">
+                  <thead className="bg-slate-50/80">
+                    <tr className="text-[10px] font-bold uppercase tracking-wide text-slate-400">
+                      <th className="px-5 py-3">Categoría</th>
+                      <th className="px-4 py-3 text-right">Unidades vendidas</th>
+                      <th className="px-5 py-3 text-right">Utilidad bruta</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-slate-100">
+                    {margins.map((margin) => (
+                      <tr key={margin.category_id}>
+                        <td className="px-5 py-3 text-xs font-semibold text-slate-700">{margin.category_name}</td>
+                        <td className="px-4 py-3 text-right text-xs text-slate-600">{Number(margin.units_sold).toLocaleString('es-MX')}</td>
+                        <td className="px-5 py-3 text-right text-xs font-bold tabular-nums text-slate-800">{formatCurrency(margin.gross_profit)}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </>
+          )}
+        </ReportSection>
+      </div>
+    </div>
+  )
+}
+
+export default ReportsPage
+ + new Intl.NumberFormat('es-MX', { notation: 'compact', maximumFractionDigits: 1 }).format(value)}
+                      label={{ value: 'Utilidad bruta (MXN)', angle: -90, position: 'insideLeft', fill: '#64748b', fontSize: 10 }}
+                      width={58}
+                    />
+                    <Tooltip
+                      formatter={(value) => [formatCurrency(value), 'Utilidad bruta']}
+                      contentStyle={{ border: '1px solid #e2e8f0', borderRadius: 12, fontSize: 12 }}
+                    />
+                    <Bar dataKey="chartValue" name="Utilidad bruta" fill="#0f766e" radius={[5, 5, 0, 0]} />
+                  </BarChart>
+                </ResponsiveContainer>
+              </div>
+              <div className="overflow-x-auto border-t border-slate-100">
+                <table className="w-full min-w-[440px] text-left">
+                  <thead className="bg-slate-50/80">
+                    <tr className="text-[10px] font-bold uppercase tracking-wide text-slate-400">
+                      <th className="px-5 py-3">Categoría</th>
+                      <th className="px-4 py-3 text-right">Unidades vendidas</th>
+                      <th className="px-5 py-3 text-right">Utilidad bruta</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-slate-100">
+                    {margins.map((margin) => (
+                      <tr key={margin.category_id}>
+                        <td className="px-5 py-3 text-xs font-semibold text-slate-700">{margin.category_name}</td>
+                        <td className="px-4 py-3 text-right text-xs text-slate-600">{Number(margin.units_sold).toLocaleString('es-MX')}</td>
+                        <td className="px-5 py-3 text-right text-xs font-bold tabular-nums text-slate-800">{formatCurrency(margin.gross_profit)}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </>
+          )}
+        </ReportSection>
+      </div>
+    </div>
+  )
+}
+
+export default ReportsPage
+ + new Intl.NumberFormat('es-MX', { notation: 'compact', maximumFractionDigits: 1 }).format(value)
+                      : value}
+                    label={{
+                      value: topBy === 'amount' ? 'Importe vendido (MXN)' : 'Unidades vendidas',
+                      position: 'insideBottom',
+                      offset: -4,
+                      fill: '#64748b',
+                      fontSize: 10,
+                    }}
+                  />
+                  <YAxis
+                    type="category"
+                    dataKey="chartLabel"
+                    width={125}
+                    axisLine={false}
+                    tickLine={false}
+                    tick={{ fill: '#64748b', fontSize: 10 }}
+                  />
+                  <Tooltip
+                    formatter={(value) => [
+                      topBy === 'amount' ? formatCurrency(value) : Number(value).toLocaleString('es-MX'),
+                      topBy === 'amount' ? 'Importe vendido' : 'Unidades vendidas',
+                    ]}
+                    contentStyle={{ border: '1px solid #e2e8f0', borderRadius: 12, fontSize: 12 }}
+                  />
+                  <Bar dataKey="chartValue" name={topBy === 'amount' ? 'Importe' : 'Unidades'} fill="#2563eb" radius={[0, 5, 5, 0]} />
+                </BarChart>
+              </ResponsiveContainer>
+            </div>
+          )}
+        </ReportSection>
+
+        <ReportSection
+          title="Ranking de vendedores"
+          description="Total vendido, número de ventas y ticket promedio."
+          action={(
+            <ExportButton
+              report="sellers"
+              onExport={exportReport}
+              exporting={exporting}
+              disabled={loading}
+            />
+          )}
+        >
+          {loading ? <LoadingState /> : sellers.length === 0 ? <EmptyState /> : (
+            <div className="overflow-x-auto">
+              <table className="w-full min-w-[600px] text-left">
+                <thead className="bg-slate-50/80">
+                  <tr className="text-[10px] font-bold uppercase tracking-wide text-slate-400">
+                    <th className="px-5 py-3">Vendedor</th>
+                    <th className="px-4 py-3 text-right">Total vendido</th>
+                    <th className="px-4 py-3 text-right">Número de ventas</th>
+                    <th className="px-5 py-3 text-right">Ticket promedio</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-slate-100">
+                  {sellers.map((seller, index) => (
+                    <tr key={seller.seller_id} className="hover:bg-slate-50/70">
+                      <td className="px-5 py-3.5">
+                        <span className="mr-3 inline-flex h-6 w-6 items-center justify-center rounded-full bg-blue-50 text-[10px] font-bold text-blue-700">
+                          {index + 1}
+                        </span>
+                        <span className="text-xs font-semibold text-slate-700">{seller.seller_name}</span>
+                      </td>
+                      <td className="px-4 py-3.5 text-right text-xs font-semibold tabular-nums text-slate-800">{formatCurrency(seller.total_sold)}</td>
+                      <td className="px-4 py-3.5 text-right text-xs text-slate-600">{Number(seller.sales_count).toLocaleString('es-MX')}</td>
+                      <td className="px-5 py-3.5 text-right text-xs text-slate-600">{formatCurrency(seller.average_ticket)}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          )}
+        </ReportSection>
+
+        <ReportSection
+          title="Ventas por sucursal y categoría"
+          description="Tabla cruzada con el importe vendido en cada combinación."
+          action={(
+            <ExportButton
+              report="branch-category"
+              onExport={exportReport}
+              exporting={exporting}
+              disabled={loading || branchCategory.rows.length === 0}
+            />
+          )}
+        >
+          {loading ? <LoadingState /> : branchCategory.rows.length === 0 ? <EmptyState /> : (
+            <div className="overflow-x-auto">
+              <table className="w-full min-w-[700px] text-left">
+                <thead className="bg-slate-50/80">
+                  <tr className="text-[10px] font-bold uppercase tracking-wide text-slate-400">
+                    <th className="sticky left-0 bg-slate-50 px-5 py-3">Sucursal</th>
+                    {branchCategory.categories.map((category) => (
+                      <th key={category.id} className="whitespace-nowrap px-4 py-3 text-right">{category.name}</th>
+                    ))}
+                    <th className="px-5 py-3 text-right">Total</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-slate-100">
+                  {branchCategory.rows.map((branch) => (
+                    <tr key={branch.branch_id} className="hover:bg-slate-50/70">
+                      <th className="sticky left-0 bg-white px-5 py-3.5 text-xs font-semibold text-slate-700">{branch.branch_name}</th>
+                      {branchCategory.categories.map((category) => (
+                        <td key={category.id} className="whitespace-nowrap px-4 py-3.5 text-right text-xs tabular-nums text-slate-600">
+                          {formatCurrency(branch.categories[String(category.id)] || '0.00')}
+                        </td>
+                      ))}
+                      <td className="whitespace-nowrap px-5 py-3.5 text-right text-xs font-bold tabular-nums text-slate-800">
+                        {formatCurrency(branch.total)}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          )}
+        </ReportSection>
+
+        <ReportSection
+          title="Margen por categoría"
+          description="Utilidad bruta calculada como (precio unitario − costo) × cantidad."
+          action={(
+            <ExportButton
+              report="margins"
+              onExport={exportReport}
+              exporting={exporting}
+              disabled={loading}
+            />
+          )}
+        >
+          {loading ? <LoadingState /> : margins.length === 0 ? <EmptyState /> : (
+            <>
+              <div className="h-[300px] w-full px-3 pt-4 sm:px-5">
+                <ResponsiveContainer width="100%" height="100%">
+                  <BarChart data={marginChartData} margin={{ top: 8, right: 18, left: 8, bottom: 8 }}>
+                    <CartesianGrid stroke="#eef2f7" strokeDasharray="4 4" vertical={false} />
+                    <XAxis dataKey="category_name" axisLine={false} tickLine={false} tick={{ fill: '#64748b', fontSize: 10 }} label={{ value: 'Categoría', position: 'insideBottom', offset: -4, fill: '#64748b', fontSize: 10 }} />
+                    <YAxis
+                      axisLine={false}
+                      tickLine={false}
+                      tick={{ fill: '#64748b', fontSize: 10 }}
+                      tickFormatter={(value) => '
+                      label={{ value: 'Utilidad bruta (MXN)', angle: -90, position: 'insideLeft', fill: '#64748b', fontSize: 10 }}
+                      width={58}
+                    />
+                    <Tooltip
+                      formatter={(value) => [formatCurrency(value), 'Utilidad bruta']}
+                      contentStyle={{ border: '1px solid #e2e8f0', borderRadius: 12, fontSize: 12 }}
+                    />
+                    <Bar dataKey="chartValue" name="Utilidad bruta" fill="#0f766e" radius={[5, 5, 0, 0]} />
+                  </BarChart>
+                </ResponsiveContainer>
+              </div>
+              <div className="overflow-x-auto border-t border-slate-100">
+                <table className="w-full min-w-[440px] text-left">
+                  <thead className="bg-slate-50/80">
+                    <tr className="text-[10px] font-bold uppercase tracking-wide text-slate-400">
+                      <th className="px-5 py-3">Categoría</th>
+                      <th className="px-4 py-3 text-right">Unidades vendidas</th>
+                      <th className="px-5 py-3 text-right">Utilidad bruta</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-slate-100">
+                    {margins.map((margin) => (
+                      <tr key={margin.category_id}>
+                        <td className="px-5 py-3 text-xs font-semibold text-slate-700">{margin.category_name}</td>
+                        <td className="px-4 py-3 text-right text-xs text-slate-600">{Number(margin.units_sold).toLocaleString('es-MX')}</td>
+                        <td className="px-5 py-3 text-right text-xs font-bold tabular-nums text-slate-800">{formatCurrency(margin.gross_profit)}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </>
+          )}
+        </ReportSection>
+      </div>
+    </div>
+  )
+}
+
+export default ReportsPage
+ + new Intl.NumberFormat('es-MX', { notation: 'compact', maximumFractionDigits: 1 }).format(value)}
                       label={{ value: 'Utilidad bruta (MXN)', angle: -90, position: 'insideLeft', fill: '#64748b', fontSize: 10 }}
                       width={58}
                     />
