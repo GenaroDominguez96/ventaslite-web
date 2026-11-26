@@ -1,11 +1,11 @@
 # VentasLite Web
 
-Frontend de VentasLite construido con React 18, Vite y Tailwind CSS 4.
+Frontend de VentasLite construido con React 18, Vite 8 y Tailwind CSS 4.
 
 ## Requisitos
 
-- Node.js 20.19+ o 22.12+
-- npm
+- Node.js 20.19+ (Node 24 recomendado para este entorno).
+- npm.
 
 ## Instalación local
 
@@ -32,7 +32,21 @@ Frontend de VentasLite construido con React 18, Vite y Tailwind CSS 4.
 - `npm run dev`: servidor local.
 - `npm run build`: compilación de producción.
 - `npm run preview`: vista previa de la compilación.
-- `npm run lint`: análisis estático.
+- `npm run lint`: análisis estático con Oxlint.
+
+## Estructura principal
+
+```text
+src/
+├── components/
+│   ├── common/
+│   └── layout/
+├── data/
+├── pages/
+├── routes/
+├── services/
+└── utils/
+```
 
 ## Configuración
 
@@ -41,6 +55,8 @@ Frontend de VentasLite construido con React 18, Vite y Tailwind CSS 4.
 
 No almacenar secretos ni API keys en variables `VITE_*`; se exponen al navegador.
 
-## Estado
+## Estado actual
 
-El layout administrativo y las pantallas de navegación utilizan datos ilustrativos. La integración con la API y la lógica funcional se implementarán en etapas posteriores.
+El frontend contiene el layout administrativo, navegación, dashboard demostrativo y pantallas placeholder. El cliente Axios está preparado, pero no ejecuta solicitudes automáticamente. La autenticación y la integración funcional con Laravel se implementarán en etapas posteriores.
+
+Los datos del dashboard son ficticios y no representan operaciones reales.
