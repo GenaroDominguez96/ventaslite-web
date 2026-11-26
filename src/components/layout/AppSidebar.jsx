@@ -1,36 +1,10 @@
 import { NavLink } from 'react-router-dom'
-import {
-  Activity,
-  LayoutDashboard,
-  Package,
-  ShoppingBag,
-  Sparkles,
-  Store,
-  Users,
-  X,
-} from 'lucide-react'
+import { Activity, LayoutDashboard, ShoppingBag, X } from 'lucide-react'
 
-const navigationGroups = [
-  {
-    label: 'General',
-    items: [{ to: '/dashboard', label: 'Dashboard', icon: LayoutDashboard }],
-  },
-  {
-    label: 'Administración',
-    items: [
-      { to: '/ventas', label: 'Ventas', icon: ShoppingBag },
-      { to: '/productos', label: 'Productos', icon: Package },
-      { to: '/sucursales', label: 'Sucursales', icon: Store },
-      { to: '/vendedores', label: 'Vendedores', icon: Users },
-    ],
-  },
-  {
-    label: 'Análisis',
-    items: [
-      { to: '/reportes', label: 'Reportes', icon: Activity },
-      { to: '/asistente', label: 'Asistente IA', icon: Sparkles },
-    ],
-  },
+const navigationItems = [
+  { to: '/dashboard', label: 'Dashboard', icon: LayoutDashboard },
+  { to: '/ventas', label: 'Ventas', icon: ShoppingBag },
+  { to: '/reportes', label: 'Reportes', icon: Activity },
 ]
 
 function AppSidebar({ open, onClose }) {
@@ -57,7 +31,7 @@ function AppSidebar({ open, onClose }) {
             </div>
             <div>
               <div className="text-[17px] font-bold tracking-tight">VentasLite</div>
-              <div className="text-[10px] text-blue-200/70">GESTIÓN COMERCIAL</div>
+              <div className="text-[10px] text-blue-200/70">SISTEMA DE VENTAS</div>
             </div>
           </div>
 
@@ -71,51 +45,35 @@ function AppSidebar({ open, onClose }) {
           </button>
         </div>
 
-        <nav aria-label="Navegación principal" className="flex-1 space-y-7 overflow-y-auto px-4 py-7">
-          {navigationGroups.map((group) => (
-            <div key={group.label}>
-              <p className="mb-3 px-3 text-[10px] font-bold uppercase tracking-[.16em] text-blue-200/50">
-                {group.label}
-              </p>
+        <nav aria-label="Navegación principal" className="flex-1 px-4 py-7">
+          <p className="mb-3 px-3 text-[10px] font-bold uppercase tracking-[.16em] text-blue-200/50">
+            Menú principal
+          </p>
 
-              <div className="space-y-1">
-                {group.items.map((item) => {
-                  const Icon = item.icon
+          <div className="space-y-1">
+            {navigationItems.map((item) => {
+              const Icon = item.icon
 
-                  return (
-                    <NavLink
-                      key={item.to}
-                      to={item.to}
-                      onClick={onClose}
-                      className={({ isActive }) =>
-                        `flex items-center gap-3 rounded-xl px-3 py-2.5 text-[13px] font-medium transition ${
-                          isActive
-                            ? 'bg-blue-600 text-white shadow-lg shadow-blue-950/20'
-                            : 'text-blue-100/75 hover:bg-white/10 hover:text-white'
-                        }`
-                      }
-                    >
-                      <Icon size={17} strokeWidth={1.8} />
-                      {item.label}
-                    </NavLink>
-                  )
-                })}
-              </div>
-            </div>
-          ))}
-        </nav>
-
-        <div className="border-t border-white/10 p-4">
-          <div className="flex items-center gap-3 rounded-xl bg-white/5 p-3">
-            <div className="flex h-9 w-9 items-center justify-center rounded-full bg-amber-300 text-xs font-bold text-amber-950">
-              GA
-            </div>
-            <div className="min-w-0 flex-1">
-              <p className="truncate text-xs font-semibold">Genaro Admin</p>
-              <p className="text-[10px] text-blue-200/60">Administrador · Demo</p>
-            </div>
+              return (
+                <NavLink
+                  key={item.to}
+                  to={item.to}
+                  onClick={onClose}
+                  className={({ isActive }) =>
+                    `flex items-center gap-3 rounded-xl px-3 py-2.5 text-[13px] font-medium transition ${
+                      isActive
+                        ? 'bg-blue-600 text-white shadow-lg shadow-blue-950/20'
+                        : 'text-blue-100/75 hover:bg-white/10 hover:text-white'
+                    }`
+                  }
+                >
+                  <Icon size={17} strokeWidth={1.8} />
+                  {item.label}
+                </NavLink>
+              )
+            })}
           </div>
-        </div>
+        </nav>
       </aside>
     </>
   )
