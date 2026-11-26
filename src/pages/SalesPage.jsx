@@ -68,6 +68,7 @@ function SalesPage() {
   const [catalogLoading, setCatalogLoading] = useState(true)
   const [error, setError] = useState('')
   const [catalogError, setCatalogError] = useState('')
+  const [successMessage, setSuccessMessage] = useState('')
   const [showCreate, setShowCreate] = useState(false)
   const [selectedSaleId, setSelectedSaleId] = useState(null)
 
@@ -135,11 +136,13 @@ function SalesPage() {
 
   const applyFilters = (event) => {
     event.preventDefault()
+    setSuccessMessage('')
     setPage(1)
     setAppliedFilters({ ...filters })
   }
 
   const clearFilters = () => {
+    setSuccessMessage('')
     setFilters(emptyFilters)
     setAppliedFilters(emptyFilters)
     setPage(1)
@@ -147,11 +150,13 @@ function SalesPage() {
 
   const handleCreated = async () => {
     setShowCreate(false)
+    setSuccessMessage('La venta se registró correctamente.')
     setPage(1)
     await loadSales(1, appliedFilters)
   }
 
   const handleChanged = async () => {
+    setSuccessMessage('La venta fue cancelada y las existencias fueron devueltas.')
     await loadSales(page, appliedFilters)
   }
 
@@ -273,6 +278,12 @@ function SalesPage() {
       {catalogError && (
         <p role="alert" className="mb-4 rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-xs text-amber-800">
           No fue posible cargar los catálogos: {catalogError}
+        </p>
+      )}
+
+      {successMessage && (
+        <p role="status" className="mb-4 rounded-xl border border-emerald-100 bg-emerald-50 px-4 py-3 text-xs font-medium text-emerald-700">
+          {successMessage}
         </p>
       )}
 
