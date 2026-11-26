@@ -370,7 +370,7 @@ function ReportsPage() {
                 <ResponsiveContainer width="100%" height="100%">
                   <BarChart data={marginChartData} margin={{ top: 8, right: 18, left: 8, bottom: 8 }}>
                     <CartesianGrid stroke="#eef2f7" strokeDasharray="4 4" vertical={false} />
-                    <XAxis dataKey="category_name" axisLine={false} tickLine={false} tick={{ fill: '#64748b', fontSize: 10 }} />
+                    <XAxis dataKey="category_name" axisLine={false} tickLine={false} tick={{ fill: '#64748b', fontSize: 10 }} label={{ value: 'Categoría', position: 'insideBottom', offset: -4, fill: '#64748b', fontSize: 10 }} />
                     <YAxis
                       axisLine={false}
                       tickLine={false}
