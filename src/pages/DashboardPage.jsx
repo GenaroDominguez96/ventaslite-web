@@ -20,24 +20,17 @@ import {
 import PageTitle from '../components/common/PageTitle'
 import ReportFilters from '../components/reports/ReportFilters'
 import StatCard from '../components/common/StatCard'
-import salesService from '../services/salesService'
 import reportsService from '../services/reportsService'
+import salesService from '../services/salesService'
 import { formatCurrency } from '../utils/formatters'
 import { getDefaultReportRange, reportParams } from '../utils/reportFilters'
 
-const statIcons = {
-  sales: CreditCard,
-  orders: ShoppingBag,
-  average: Activity,
-  change: Percent,
-}
-
-const statStyles = {
-  sales: ['bg-blue-50', 'text-blue-600'],
-  orders: ['bg-violet-50', 'text-violet-600'],
-  average: ['bg-emerald-50', 'text-emerald-600'],
-  change: ['bg-amber-50', 'text-amber-600'],
-}
+const statConfig = [
+  { key: 'sales', title: 'Ventas totales', icon: CreditCard, bg: 'bg-blue-50', color: 'text-blue-600' },
+  { key: 'orders', title: 'Número de ventas', icon: ShoppingBag, bg: 'bg-violet-50', color: 'text-violet-600' },
+  { key: 'average', title: 'Ticket promedio', icon: Activity, bg: 'bg-emerald-50', color: 'text-emerald-600' },
+  { key: 'change', title: 'Cambio vs. periodo anterior', icon: Percent, bg: 'bg-amber-50', color: 'text-amber-600' },
+]
 
 function DashboardPage() {
   const [filters, setFilters] = useState(getDefaultReportRange)
@@ -63,10 +56,7 @@ function DashboardPage() {
       setDashboard(dashboardResponse.data)
       setMonthlySales(monthlyResponse.data || [])
     } catch (requestError) {
-      setError(
-        requestError.response?.data?.message
-          || 'No fue posible consultar los reportes del dashboard.',
-      )
+      setError(requestError.response?.data?.message || 'No fue posible consultar los reportes del dashboard.')
       setDashboard(null)
       setMonthlySales([])
     } finally {
@@ -117,11 +107,11 @@ function DashboardPage() {
   }
 
   const change = Number(dashboard?.change_percentage || 0)
-  const statValues = {
+  const values = {
     sales: dashboard ? formatCurrency(dashboard.sales_total) : '—',
     orders: dashboard ? Number(dashboard.sales_count).toLocaleString('es-MX') : '—',
     average: dashboard ? formatCurrency(dashboard.average_ticket) : '—',
-    change: dashboard ? `${change > 0 ? '+' : ''}${change.toFixed(2)}%` : '—',
+    change: dashboard ? (change > 0 ? '+' : '') + change.toFixed(2) + '%' : '—',
   }
   const chartData = monthlySales.map((month) => ({
     ...month,
@@ -148,12 +138,7 @@ function DashboardPage() {
         )}
       />
 
-      <ReportFilters
-        value={filters}
-        branches={branches}
-        onChange={updateFilter}
-        onSubmit={applyFilters}
-      />
+      <ReportFilters value={filters} branches={branches} onChange={updateFilter} onSubmit={applyFilters} />
 
       {error && (
         <p role="alert" className="mb-5 rounded-xl border border-rose-100 bg-rose-50 px-4 py-3 text-xs text-rose-700">
@@ -162,30 +147,22 @@ function DashboardPage() {
       )}
 
       <div className="mb-6 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
-        {[
-          { key: 'sales', title: 'Ventas totales' },
-          { key: 'orders', title: 'Número de ventas' },
-          { key: 'average', title: 'Ticket promedio' },
-          { key: 'change', title: 'Cambio vs. periodo anterior' },
-        ].map((stat) => {
-          const Icon = statIcons[stat.key]
-          const [iconBg, iconColor] = statStyles[stat.key]
-          const changeColor = stat.key === 'change' && change < 0 ? 'text-rose-600' : iconColor
+        {statConfig.map((stat) => {
+          const Icon = stat.icon
+          const iconColor = stat.key === 'change' && change < 0 ? 'text-rose-600' : stat.color
 
           return (
             <div key={stat.key} className="relative">
-              {loading && (
-                <div className="absolute inset-0 z-10 animate-pulse rounded-2xl bg-slate-100/70" />
-              )}
+              {loading && <div className="absolute inset-0 z-10 animate-pulse rounded-2xl bg-slate-100/70" />}
               <StatCard
                 title={stat.title}
-                value={statValues[stat.key]}
+                value={values[stat.key]}
                 icon={Icon}
-                iconBg={iconBg}
-                iconColor={changeColor}
+                iconBg={stat.bg}
+                iconColor={iconColor}
               />
               {stat.key === 'change' && dashboard && (
-                <div className={`pointer-events-none absolute bottom-5 right-5 ${change < 0 ? 'text-rose-600' : 'text-emerald-600'}`}>
+                <div className={'pointer-events-none absolute bottom-5 right-5 ' + (change < 0 ? 'text-rose-600' : 'text-emerald-600')}>
                   {change < 0 ? <ArrowDownRight size={16} /> : <ArrowUpRight size={16} />}
                 </div>
               )}
@@ -198,14 +175,12 @@ function DashboardPage() {
         <div className="mb-5 flex flex-wrap items-start justify-between gap-3">
           <div>
             <h2 className="text-sm font-bold text-slate-800">Ventas por mes</h2>
-            <p className="mt-1 text-xs text-slate-400">
-              Importes mensuales dentro del periodo seleccionado
-            </p>
+            <p className="mt-1 text-xs text-slate-400">Importes mensuales dentro del periodo seleccionado</p>
           </div>
           <button
             type="button"
             onClick={() => exportReport('monthly-sales')}
-            disabled={loading || monthlySales.length === 0 || exporting === 'monthly-sales'}
+            disabled={loading || exporting === 'monthly-sales'}
             className="inline-flex items-center gap-2 rounded-lg border border-slate-200 px-3 py-2 text-[11px] font-semibold text-slate-600 hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-50"
           >
             <Download size={14} />
@@ -225,7 +200,7 @@ function DashboardPage() {
             </div>
           ) : (
             <ResponsiveContainer width="100%" height="100%">
-              <LineChart data={chartData} margin={{ top: 15, right: 12, left: 12, bottom: 16 }}>
+              <LineChart data={chartData} margin={{ top: 15, right: 12, left: 14, bottom: 16 }}>
                 <CartesianGrid stroke="#eef2f7" strokeDasharray="4 4" vertical={false} />
                 <XAxis
                   dataKey="label"
@@ -238,54 +213,14 @@ function DashboardPage() {
                   axisLine={false}
                   tickLine={false}
                   tick={{ fill: '#64748b', fontSize: 10 }}
-                  tickFormatter={(value) => '
+                  tickFormatter={(value) => '$' + new Intl.NumberFormat('es-MX', { notation: 'compact', maximumFractionDigits: 1 }).format(value)}
                   label={{ value: 'Ventas (MXN)', angle: -90, position: 'insideLeft', fill: '#64748b', fontSize: 10 }}
                   width={58}
                 />
                 <Tooltip
                   formatter={(value) => [formatCurrency(value), 'Ventas']}
-                  labelFormatter={(label) => `Periodo: ${label}`}
-                  contentStyle={{
-                    border: '1px solid #e2e8f0',
-                    borderRadius: 12,
-                    fontSize: 12,
-                  }}
-                />
-                <Line
-                  type="monotone"
-                  dataKey="total"
-                  name="Ventas"
-                  stroke="#2563eb"
-                  strokeWidth={3}
-                  dot={{ r: 3, fill: '#2563eb', strokeWidth: 2, stroke: '#fff' }}
-                  activeDot={{ r: 5 }}
-                />
-              </LineChart>
-            </ResponsiveContainer>
-          )}
-        </div>
-
-        <p className="mt-3 text-right text-[10px] text-slate-400">
-          Importes en MXN. Las ventas canceladas no se incluyen.
-        </p>
-      </section>
-    </div>
-  )
-}
-
-export default DashboardPage
- + new Intl.NumberFormat('es-MX', { notation: 'compact', maximumFractionDigits: 1 }).format(value)}
-                  label={{ value: 'Ventas (MXN)', angle: -90, position: 'insideLeft', fill: '#64748b', fontSize: 10 }}
-                  width={58}
-                />
-                <Tooltip
-                  formatter={(value) => [formatCurrency(value), 'Ventas']}
-                  labelFormatter={(label) => `Periodo: ${label}`}
-                  contentStyle={{
-                    border: '1px solid #e2e8f0',
-                    borderRadius: 12,
-                    fontSize: 12,
-                  }}
+                  labelFormatter={(label) => 'Periodo: ' + label}
+                  contentStyle={{ border: '1px solid #e2e8f0', borderRadius: 12, fontSize: 12 }}
                 />
                 <Line
                   type="monotone"
