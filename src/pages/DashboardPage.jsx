@@ -179,12 +179,12 @@ function DashboardPage() {
               Registros ficticios para validar el diseño
             </p>
           </div>
-          <a
-            href="/ventas"
+          <NavLink
+            to="/ventas"
             className="text-xs font-semibold text-blue-600 hover:text-blue-700"
           >
             Ver todas las ventas →
-          </a>
+          </NavLink>
         </div>
 
         <div className="overflow-x-auto">
