@@ -225,19 +225,21 @@ function DashboardPage() {
             </div>
           ) : (
             <ResponsiveContainer width="100%" height="100%">
-              <LineChart data={chartData} margin={{ top: 15, right: 12, left: 8, bottom: 4 }}>
+              <LineChart data={chartData} margin={{ top: 15, right: 12, left: 12, bottom: 16 }}>
                 <CartesianGrid stroke="#eef2f7" strokeDasharray="4 4" vertical={false} />
                 <XAxis
                   dataKey="label"
                   axisLine={false}
                   tickLine={false}
                   tick={{ fill: '#64748b', fontSize: 11 }}
+                  label={{ value: 'Mes', position: 'insideBottom', offset: -8, fill: '#64748b', fontSize: 10 }}
                 />
                 <YAxis
                   axisLine={false}
                   tickLine={false}
                   tick={{ fill: '#64748b', fontSize: 10 }}
-                  tickFormatter={(value) => `$${new Intl.NumberFormat('es-MX', { notation: 'compact', maximumFractionDigits: 1 }).format(value)}`}
+                  tickFormatter={(value) => `${new Intl.NumberFormat('es-MX', { notation: 'compact', maximumFractionDigits: 1 }).format(value)}`}
+                  label={{ value: 'Ventas (MXN)', angle: -90, position: 'insideLeft', fill: '#64748b', fontSize: 10 }}
                   width={58}
                 />
                 <Tooltip
