@@ -130,6 +130,8 @@ function ReportsPage() {
   const applyFilters = (event) => {
     event.preventDefault()
     setAppliedFilters({ ...filters })
+    setAssistantAnswer('')
+    setAssistantError('')
   }
 
   const exportReport = async (report) => {
