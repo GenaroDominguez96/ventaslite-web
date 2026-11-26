@@ -31,6 +31,16 @@ const reportsService = {
     return response.data
   },
 
+  async askAssistant(data) {
+    const response = await apiClient.post('/reports/assistant', data)
+    return response.data
+  },
+
+  async getExecutiveSummary(params) {
+    const response = await apiClient.post('/reports/executive-summary', params)
+    return response.data
+  },
+
   async exportReport(report, params = {}) {
     const response = await apiClient.get(`/reports/${report}/export`, {
       params,
