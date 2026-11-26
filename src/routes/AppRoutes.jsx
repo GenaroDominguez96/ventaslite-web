@@ -3,6 +3,7 @@ import AppLayout from '../components/layout/AppLayout'
 import ModulePlaceholder from '../components/common/ModulePlaceholder'
 import DashboardPage from '../pages/DashboardPage'
 import LoginPage from '../pages/LoginPage'
+import SalesPage from '../pages/SalesPage'
 import { GuestOnly, RequireAuth } from './RouteGuards'
 
 function ReportsPage() {
@@ -11,16 +12,6 @@ function ReportsPage() {
       title="Reportes"
       section="Análisis"
       description="Consulta los reportes de ventas y el asistente de IA del periodo seleccionado."
-    />
-  )
-}
-
-function SalesPage() {
-  return (
-    <ModulePlaceholder
-      title="Ventas"
-      section="Administración"
-      description="Consulta las ventas, registra nuevas operaciones y revisa su detalle."
     />
   )
 }
