@@ -1,9 +1,9 @@
-# Diseño inicial de VentasLite
+# Wireframe inicial de VentasLite
 
-El wireframe previo de la prueba técnica contempla las pantallas de login, dashboard y listado de ventas.
+El entregable de diseño solicitado por la prueba técnica es un boceto previo de las pantallas de login, dashboard y listado de ventas.
 
-Coloca el PDF aprobado en esta carpeta con el nombre:
+El archivo aprobado debe colocarse en esta carpeta como:
 
 `VentasLite_Wireframe_Inicial.pdf`
 
-El layout implementado en esta rama toma como referencia la paleta, jerarquía y composición del wireframe. Los datos del dashboard son ilustrativos y no provienen de la API.
+**Pendiente:** esta carpeta contiene únicamente esta instrucción; el PDF o imagen del boceto inicial todavía no está agregado al repositorio.
