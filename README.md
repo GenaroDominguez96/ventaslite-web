@@ -55,8 +55,18 @@ src/
 
 No almacenar secretos ni API keys en variables `VITE_*`; se exponen al navegador.
 
+## Autenticación
+
+El login consume los endpoints de autenticación del backend:
+
+- `POST /login`: inicia sesión y recibe un token Sanctum.
+- `GET /me`: recupera al usuario cuando existe un token guardado.
+- `POST /logout`: invalida el token actual.
+
+Las rutas Dashboard, Ventas y Reportes requieren una sesión válida. El token se envía mediante el encabezado `Authorization: Bearer`.
+
 ## Estado actual
 
-El frontend contiene el layout administrativo, navegación, dashboard demostrativo y pantallas placeholder. El cliente Axios está preparado, pero no ejecuta solicitudes automáticamente. La autenticación y la integración funcional con Laravel se implementarán en etapas posteriores.
+El frontend contiene la pantalla de login, protección de rutas, layout administrativo y dashboard demostrativo. Los módulos Ventas y Reportes conservan únicamente su estructura visual.
 
 Los datos del dashboard son ficticios y no representan operaciones reales.
