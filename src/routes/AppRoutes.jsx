@@ -3,44 +3,25 @@ import AppLayout from '../components/layout/AppLayout'
 import ModulePlaceholder from '../components/common/ModulePlaceholder'
 import DashboardPage from '../pages/DashboardPage'
 
-const modules = [
-  {
-    path: 'ventas',
-    title: 'Ventas',
-    section: 'Administración',
-    description: 'Consulta y administra las operaciones de venta.',
-  },
-  {
-    path: 'productos',
-    title: 'Productos',
-    section: 'Administración',
-    description: 'Consulta el catálogo y disponibilidad de productos.',
-  },
-  {
-    path: 'sucursales',
-    title: 'Sucursales',
-    section: 'Administración',
-    description: 'Administra las sucursales de tu negocio.',
-  },
-  {
-    path: 'vendedores',
-    title: 'Vendedores',
-    section: 'Administración',
-    description: 'Consulta los usuarios y vendedores del sistema.',
-  },
-  {
-    path: 'reportes',
-    title: 'Reportes',
-    section: 'Análisis',
-    description: 'Analiza el comportamiento comercial del negocio.',
-  },
-  {
-    path: 'asistente',
-    title: 'Asistente IA',
-    section: 'Análisis',
-    description: 'Consulta información comercial en lenguaje natural.',
-  },
-]
+function ReportsPage() {
+  return (
+    <ModulePlaceholder
+      title="Reportes"
+      section="Análisis"
+      description="Consulta los reportes de ventas y el asistente de IA del periodo seleccionado."
+    />
+  )
+}
+
+function SalesPage() {
+  return (
+    <ModulePlaceholder
+      title="Ventas"
+      section="Administración"
+      description="Consulta las ventas, registra nuevas operaciones y revisa su detalle."
+    />
+  )
+}
 
 function AppRoutes() {
   return (
@@ -48,21 +29,8 @@ function AppRoutes() {
       <Routes>
         <Route path="/" element={<Navigate to="/dashboard" replace />} />
         <Route path="/dashboard" element={<DashboardPage />} />
-
-        {modules.map((module) => (
-          <Route
-            key={module.path}
-            path={`/${module.path}`}
-            element={
-              <ModulePlaceholder
-                title={module.title}
-                section={module.section}
-                description={module.description}
-              />
-            }
-          />
-        ))}
-
+        <Route path="/ventas" element={<SalesPage />} />
+        <Route path="/reportes" element={<ReportsPage />} />
         <Route path="*" element={<Navigate to="/dashboard" replace />} />
       </Routes>
     </AppLayout>
