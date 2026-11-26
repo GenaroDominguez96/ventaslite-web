@@ -96,6 +96,12 @@ Dashboard y Reportes consultan los datos agregados de la API. El rango de fechas
 - Cada reporte tiene exportación CSV.
 - El backend aplica el alcance por rol y excluye las ventas canceladas; el frontend no suma el detalle de las ventas para construir indicadores.
 
+## Asistente de IA
+
+En la pantalla Reportes se puede enviar una pregunta en español o solicitar el resumen ejecutivo. Ambas acciones utilizan el rango de fechas y la sucursal aplicados en los filtros. La respuesta se muestra en la misma pantalla; si falta la configuración de OpenAI o el servicio no responde, se presenta un mensaje y los reportes siguen funcionando.
+
+La API key se configura exclusivamente en el backend mediante `OPENAI_API_KEY`. No debe agregarse al frontend ni a variables `VITE_*`.
+
 ## Estado actual
 
-El frontend contiene login, protección de rutas, layout administrativo, dashboard y reportes conectados a la API, además del módulo de Ventas. El asistente de IA y el despliegue público permanecen pendientes.
+El frontend contiene login, protección de rutas, layout administrativo, dashboard, ventas y reportes conectados a la API, incluido el asistente de IA y el resumen ejecutivo. El despliegue público y los entregables visuales y de demostración permanecen pendientes.
