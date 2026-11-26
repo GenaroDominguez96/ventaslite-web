@@ -1,9 +1,13 @@
-# Wireframe inicial de VentasLite
+# Wireframe de referencia de VentasLite
 
-El entregable de diseño solicitado por la prueba técnica es un boceto previo de las pantallas de login, dashboard y listado de ventas.
+Archivo: [wireframe-login-dashboard-ventas.svg](./wireframe-login-dashboard-ventas.svg)
 
-El archivo aprobado debe colocarse en esta carpeta como:
+Incluye las tres pantallas solicitadas en la prueba técnica:
 
-`VentasLite_Wireframe_Inicial.pdf`
+- Login.
+- Dashboard con filtros, indicadores y ventas por mes.
+- Listado de ventas con filtros, tabla y paginación.
 
-**Pendiente:** esta carpeta contiene únicamente esta instrucción; el PDF o imagen del boceto inicial todavía no está agregado al repositorio.
+**Nota de trazabilidad:** este boceto se incorporó durante la documentación y se reconstruyó tomando como referencia las pantallas implementadas. No se conserva un archivo o evidencia con fecha anterior al inicio de la programación; por tanto, no debe presentarse como prueba de que el wireframe se elaboró antes de codificar.
+
+Los importes y registros que aparecen dibujados son ilustrativos y no corresponden a datos reales.
