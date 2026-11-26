@@ -102,6 +102,10 @@ En la pantalla Reportes se puede enviar una pregunta en español o solicitar el 
 
 La API key se configura exclusivamente en el backend mediante `OPENAI_API_KEY`. No debe agregarse al frontend ni a variables `VITE_*`.
 
+Entregables de documentación:
+- [Bitácora de uso de IA](./AI_LOG.md).
+- [Wireframe de Login, Dashboard y Ventas](./docs/wireframe/wireframe-login-dashboard-ventas.svg).
+
 ## Estado actual
 
 El frontend contiene login, protección de rutas, layout administrativo, dashboard, ventas y reportes conectados a la API, incluido el asistente de IA y el resumen ejecutivo. El despliegue público y los entregables visuales y de demostración permanecen pendientes.
