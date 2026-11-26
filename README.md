@@ -27,6 +27,12 @@ Frontend de VentasLite construido con React 18, Vite 8 y Tailwind CSS 4.
    npm run dev
    ```
 
+En Windows se puede copiar el archivo desde el Explorador o con PowerShell:
+
+```powershell
+Copy-Item .env.example .env
+```
+
 ## Scripts
 
 - `npm run dev`: servidor local.
@@ -40,7 +46,9 @@ Frontend de VentasLite construido con React 18, Vite 8 y Tailwind CSS 4.
 src/
 ├── components/
 │   ├── common/
-│   └── layout/
+│   ├── layout/
+│   └── sales/
+├── context/
 ├── data/
 ├── pages/
 ├── routes/
@@ -51,7 +59,7 @@ src/
 ## Configuración
 
 - `VITE_APP_NAME`: nombre de la aplicación.
-- `VITE_API_URL`: URL base de la API Laravel.
+- `VITE_API_URL`: URL base de la API Laravel, por ejemplo `http://localhost:8000/api`.
 
 No almacenar secretos ni API keys en variables `VITE_*`; se exponen al navegador.
 
@@ -65,8 +73,22 @@ El login consume los endpoints de autenticación del backend:
 
 Las rutas Dashboard, Ventas y Reportes requieren una sesión válida. El token se envía mediante el encabezado `Authorization: Bearer`.
 
+## Ventas
+
+La pantalla Ventas consume los catálogos y endpoints protegidos del backend:
+
+- `GET /branches`: sucursales para filtros y registro.
+- `GET /products`: productos activos con existencias.
+- `GET /sellers`: vendedores para el filtro de administrador.
+- `GET /sales`: listado paginado con filtros por fecha, sucursal, vendedor y estatus.
+- `GET /sales/{id}`: detalle de venta.
+- `POST /sales`: registra una venta.
+- `POST /sales/{id}/cancel`: cancela una venta (solo administrador).
+
+Los importes se calculan y validan en el backend; el frontend solo muestra una vista previa del subtotal, IVA y total. La autorización por vendedor también se aplica en la API.
+
 ## Estado actual
 
-El frontend contiene la pantalla de login, protección de rutas, layout administrativo y dashboard demostrativo. Los módulos Ventas y Reportes conservan únicamente su estructura visual.
+El frontend contiene login, protección de rutas, layout administrativo, dashboard demostrativo y el módulo de Ventas conectado a la API. El módulo de Reportes y el asistente de IA permanecen pendientes.
 
 Los datos del dashboard son ficticios y no representan operaciones reales.
