@@ -24,12 +24,15 @@ function LoginPage() {
       navigate(destination, { replace: true })
     } catch (requestError) {
       const response = requestError.response
-      const message = response?.data?.message
+      const validationMessage = response?.data?.errors
+        ? Object.values(response.data.errors).flat()[0]
+        : null
+      const message = validationMessage || response?.data?.message
 
       if (message) {
         setError(message)
       } else if (response?.status === 422) {
-        setError('Verifica que el correo y la contraseña estén completos y tengan un formato válido.')
+        setError('Verifica los datos ingresados.')
       } else {
         setError('No fue posible conectar con el servidor. Intenta nuevamente.')
       }
