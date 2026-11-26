@@ -59,7 +59,7 @@ function SaleFormModal({ branches, onClose, onCreated }) {
     () => items.reduce((sum, item) => sum + toCents(item.product.price) * item.quantity, 0),
     [items],
   )
-  const taxCents = Math.round(subtotalCents * 0.16)
+  const taxCents = Math.floor((subtotalCents * 16 + 50) / 100)
   const totalCents = subtotalCents + taxCents
 
   const addProduct = () => {
@@ -69,21 +69,25 @@ function SaleFormModal({ branches, onClose, onCreated }) {
       return
     }
 
-    setItems((current) => {
-      const existing = current.find((item) => item.product.id === product.id)
+    const existing = items.find((item) => item.product.id === product.id)
 
-      if (existing) {
+    if (!existing && items.length >= 6) {
+      setError('La venta admite un máximo de seis productos distintos.')
+      return
+    }
+
+    const quantityToAdd = Math.max(1, Math.min(Number(selectedQuantity) || 1, product.stock))
+
+    setItems((current) => {
+      const currentItem = current.find((item) => item.product.id === product.id)
+
+      if (currentItem) {
         return current.map((item) => item.product.id === product.id
-          ? { ...item, quantity: Math.min(item.quantity + Number(selectedQuantity), product.stock) }
+          ? { ...item, quantity: Math.min(item.quantity + quantityToAdd, product.stock) }
           : item)
       }
 
-      if (current.length >= 6) {
-        setError('La venta admite un máximo de seis productos distintos.')
-        return current
-      }
-
-      return [...current, { product, quantity: Number(selectedQuantity) }]
+      return [...current, { product, quantity: quantityToAdd }]
     })
 
     setError('')
