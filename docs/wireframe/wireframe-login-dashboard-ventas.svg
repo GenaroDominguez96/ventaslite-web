@@ -1,0 +1,150 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1080" viewBox="0 0 1800 1080" role="img" aria-labelledby="title desc">
+  <title id="title">Wireframe de referencia de VentasLite</title>
+  <desc id="desc">Boceto de baja fidelidad de las pantallas Login, Dashboard y Listado de ventas.</desc>
+  <defs>
+    <style>
+      .bg{fill:#f1f5f9}.paper{fill:#fff;stroke:#cbd5e1;stroke-width:2}.stroke{fill:none;stroke:#94a3b8;stroke-width:2}.line{stroke:#cbd5e1;stroke-width:2}.dark{fill:#1e293b}.muted{fill:#64748b}.blue{fill:#2563eb}.pale{fill:#eff6ff}.soft{fill:#f8fafc}.txt{font-family:Arial,Helvetica,sans-serif;fill:#334155}.h1{font-size:30px;font-weight:700}.h2{font-size:19px;font-weight:700}.body{font-size:14px}.small{font-size:12px}.tiny{font-size:10px}.white{fill:#fff}
+    </style>
+  </defs>
+  <rect width="1800" height="1080" fill="#e2e8f0"/>
+  <text x="60" y="54" class="txt h1">VentasLite · Wireframe de referencia</text>
+  <text x="60" y="82" class="txt body muted">Boceto de baja fidelidad · Login, Dashboard y listado de ventas</text>
+
+  <!-- LOGIN -->
+  <g transform="translate(60 120)">
+    <text x="0" y="0" class="txt h2">01 · Login</text>
+    <rect x="0" y="20" width="520" height="890" rx="18" class="paper"/>
+    <rect x="1" y="21" width="518" height="888" rx="18" class="bg"/>
+    <rect x="78" y="235" width="364" height="438" rx="18" class="paper"/>
+    <rect x="235" y="286" width="50" height="50" rx="14" class="blue"/>
+    <path d="M249 300h22v22h-22z" fill="none" stroke="#fff" stroke-width="2"/>
+    <path d="M253 296v5m14-5v5" stroke="#fff" stroke-width="2"/>
+    <text x="260" y="375" text-anchor="middle" class="txt h1">VentasLite</text>
+    <text x="260" y="404" text-anchor="middle" class="txt body muted">Inicia sesión para continuar</text>
+    <text x="112" y="463" class="txt body">Correo electrónico</text>
+    <rect x="112" y="477" width="296" height="46" rx="9" class="paper"/>
+    <text x="128" y="505" class="txt small muted">usuario@correo.com</text>
+    <text x="112" y="558" class="txt body">Contraseña</text>
+    <rect x="112" y="572" width="296" height="46" rx="9" class="paper"/>
+    <text x="128" y="600" class="txt small muted">••••••••••</text>
+    <rect x="112" y="635" width="296" height="44" rx="9" class="blue"/>
+    <text x="260" y="663" text-anchor="middle" class="white body" font-weight="700">Iniciar sesión</text>
+    <text x="260" y="735" text-anchor="middle" class="txt small muted">Sistema interno de gestión de ventas</text>
+  </g>
+
+  <!-- DASHBOARD -->
+  <g transform="translate(640 120)">
+    <text x="0" y="0" class="txt h2">02 · Dashboard</text>
+    <rect x="0" y="20" width="520" height="890" rx="18" class="paper"/>
+    <rect x="1" y="21" width="132" height="888" rx="17" class="dark"/>
+    <rect x="15" y="44" width="28" height="28" rx="8" class="blue"/>
+    <text x="53" y="64" class="white body" font-weight="700">VentasLite</text>
+    <rect x="12" y="112" width="108" height="38" rx="8" fill="#334155"/>
+    <text x="27" y="136" class="white small">Dashboard</text>
+    <text x="27" y="183" fill="#cbd5e1" class="small">Ventas</text>
+    <text x="27" y="225" fill="#cbd5e1" class="small">Reportes</text>
+    <rect x="134" y="21" width="385" height="68" fill="#fff"/>
+    <text x="158" y="61" class="txt body" font-weight="700">Panel general</text>
+    <text x="490" y="61" text-anchor="end" class="txt small muted">Usuario · Salir</text>
+    <text x="158" y="124" class="txt h2">Dashboard</text>
+    <text x="158" y="147" class="txt small muted">Indicadores del periodo seleccionado</text>
+    <rect x="158" y="170" width="340" height="88" rx="10" class="soft" stroke="#cbd5e1"/>
+    <text x="172" y="194" class="txt tiny muted">FECHA INICIAL</text>
+    <text x="172" y="224" class="txt small">01/01/2026</text>
+    <text x="292" y="194" class="txt tiny muted">FECHA FINAL</text>
+    <text x="292" y="224" class="txt small">25/11/2026</text>
+    <text x="410" y="194" class="txt tiny muted">SUCURSAL</text>
+    <text x="410" y="224" class="txt small">Todas</text>
+    <rect x="158" y="270" width="340" height="34" rx="8" class="blue"/>
+    <text x="328" y="292" text-anchor="middle" class="white small">Aplicar filtros</text>
+    <g>
+      <rect x="158" y="324" width="160" height="95" rx="10" class="paper"/>
+      <rect x="330" y="324" width="168" height="95" rx="10" class="paper"/>
+      <rect x="158" y="432" width="160" height="95" rx="10" class="paper"/>
+      <rect x="330" y="432" width="168" height="95" rx="10" class="paper"/>
+      <text x="174" y="349" class="txt tiny muted">VENTAS TOTALES</text>
+      <text x="174" y="391" class="txt h2">$125,000</text>
+      <text x="346" y="349" class="txt tiny muted">NÚMERO DE VENTAS</text>
+      <text x="346" y="391" class="txt h2">1,250</text>
+      <text x="174" y="457" class="txt tiny muted">TICKET PROMEDIO</text>
+      <text x="174" y="499" class="txt h2">$100.00</text>
+      <text x="346" y="457" class="txt tiny muted">CAMBIO VS ANTERIOR</text>
+      <text x="346" y="499" class="txt h2">+8.5%</text>
+    </g>
+    <rect x="158" y="550" width="340" height="298" rx="10" class="paper"/>
+    <text x="176" y="580" class="txt body" font-weight="700">Ventas por mes</text>
+    <text x="176" y="603" class="txt tiny muted">Importes mensuales · MXN</text>
+    <line x1="190" y1="800" x2="476" y2="800" class="line"/>
+    <line x1="190" y1="635" x2="190" y2="800" class="line"/>
+    <path d="M195 760 L220 735 L245 746 L270 708 L295 720 L320 680 L345 696 L370 665 L395 674 L420 640 L445 655 L472 620" fill="none" stroke="#2563eb" stroke-width="4"/>
+    <g fill="#2563eb">
+      <circle cx="195" cy="760" r="4"/><circle cx="220" cy="735" r="4"/><circle cx="245" cy="746" r="4"/><circle cx="270" cy="708" r="4"/><circle cx="295" cy="720" r="4"/><circle cx="320" cy="680" r="4"/><circle cx="345" cy="696" r="4"/><circle cx="370" cy="665" r="4"/><circle cx="395" cy="674" r="4"/><circle cx="420" cy="640" r="4"/><circle cx="445" cy="655" r="4"/><circle cx="472" cy="620" r="4"/>
+    </g>
+    <text x="334" y="827" text-anchor="middle" class="txt tiny muted">Mes</text>
+  </g>
+
+  <!-- SALES LIST -->
+  <g transform="translate(1220 120)">
+    <text x="0" y="0" class="txt h2">03 · Listado de ventas</text>
+    <rect x="0" y="20" width="520" height="890" rx="18" class="paper"/>
+    <rect x="1" y="21" width="132" height="888" rx="17" class="dark"/>
+    <rect x="15" y="44" width="28" height="28" rx="8" class="blue"/>
+    <text x="53" y="64" class="white body" font-weight="700">VentasLite</text>
+    <text x="27" y="136" fill="#cbd5e1" class="small">Dashboard</text>
+    <rect x="12" y="155" width="108" height="38" rx="8" fill="#334155"/>
+    <text x="27" y="179" class="white small">Ventas</text>
+    <text x="27" y="225" fill="#cbd5e1" class="small">Reportes</text>
+    <rect x="134" y="21" width="385" height="68" fill="#fff"/>
+    <text x="158" y="61" class="txt body" font-weight="700">Administración</text>
+    <text x="490" y="61" text-anchor="end" class="txt small muted">Usuario · Salir</text>
+    <text x="158" y="124" class="txt h2">Ventas</text>
+    <text x="158" y="147" class="txt small muted">Consulta y administración de ventas</text>
+    <rect x="420" y="108" width="78" height="34" rx="8" class="blue"/>
+    <text x="459" y="130" text-anchor="middle" class="white tiny">+ Nueva</text>
+    <rect x="158" y="170" width="340" height="145" rx="10" class="soft" stroke="#cbd5e1"/>
+    <text x="174" y="194" class="txt tiny muted">FECHA INICIAL</text>
+    <rect x="174" y="203" width="145" height="34" rx="6" class="paper"/>
+    <text x="184" y="225" class="txt tiny">dd/mm/aaaa</text>
+    <text x="332" y="194" class="txt tiny muted">FECHA FINAL</text>
+    <rect x="332" y="203" width="150" height="34" rx="6" class="paper"/>
+    <text x="342" y="225" class="txt tiny">dd/mm/aaaa</text>
+    <text x="174" y="263" class="txt tiny muted">SUCURSAL</text>
+    <rect x="174" y="272" width="145" height="30" rx="6" class="paper"/>
+    <text x="184" y="292" class="txt tiny">Todas</text>
+    <text x="332" y="263" class="txt tiny muted">ESTATUS</text>
+    <rect x="332" y="272" width="150" height="30" rx="6" class="paper"/>
+    <text x="342" y="292" class="txt tiny">Todos</text>
+    <rect x="158" y="328" width="340" height="34" rx="8" class="blue"/>
+    <text x="328" y="350" text-anchor="middle" class="white small">Aplicar filtros</text>
+    <rect x="158" y="382" width="340" height="465" rx="10" class="paper"/>
+    <text x="174" y="410" class="txt body" font-weight="700">Listado de ventas</text>
+    <text x="480" y="410" text-anchor="end" class="txt tiny muted">20 por página</text>
+    <rect x="172" y="428" width="312" height="34" fill="#f1f5f9"/>
+    <text x="180" y="450" class="txt tiny" font-weight="700">FOLIO / FECHA</text>
+    <text x="260" y="450" class="txt tiny" font-weight="700">CLIENTE</text>
+    <text x="355" y="450" class="txt tiny" font-weight="700">ESTATUS</text>
+    <text x="475" y="450" text-anchor="end" class="txt tiny" font-weight="700">TOTAL</text>
+    <g class="txt tiny">
+      <line x1="172" y1="500" x2="484" y2="500" class="line"/>
+      <text x="180" y="485">V-0001</text><text x="260" y="485">Cliente 1</text><text x="355" y="485">Pagada</text><text x="475" y="485" text-anchor="end">$1,250</text>
+      <line x1="172" y1="544" x2="484" y2="544" class="line"/>
+      <text x="180" y="529">V-0002</text><text x="260" y="529">Cliente 2</text><text x="355" y="529">Pagada</text><text x="475" y="529" text-anchor="end">$850</text>
+      <line x1="172" y1="588" x2="484" y2="588" class="line"/>
+      <text x="180" y="573">V-0003</text><text x="260" y="573">Cliente 3</text><text x="355" y="573">Cancelada</text><text x="475" y="573" text-anchor="end">$430</text>
+      <line x1="172" y1="632" x2="484" y2="632" class="line"/>
+      <text x="180" y="617">V-0004</text><text x="260" y="617">Cliente 4</text><text x="355" y="617">Pagada</text><text x="475" y="617" text-anchor="end">$2,100</text>
+      <line x1="172" y1="676" x2="484" y2="676" class="line"/>
+      <text x="180" y="661">V-0005</text><text x="260" y="661">Cliente 5</text><text x="355" y="661">Pagada</text><text x="475" y="661" text-anchor="end">$670</text>
+      <line x1="172" y1="720" x2="484" y2="720" class="line"/>
+      <text x="180" y="705">V-0006</text><text x="260" y="705">Cliente 6</text><text x="355" y="705">Pagada</text><text x="475" y="705" text-anchor="end">$1,025</text>
+    </g>
+    <line x1="172" y1="800" x2="484" y2="800" class="line"/>
+    <text x="180" y="826" class="txt tiny muted">Mostrando 1–20 de 2,500</text>
+    <rect x="385" y="808" width="42" height="26" rx="6" class="paper"/>
+    <text x="406" y="826" text-anchor="middle" class="txt tiny">‹</text>
+    <rect x="434" y="808" width="42" height="26" rx="6" class="paper"/>
+    <text x="455" y="826" text-anchor="middle" class="txt tiny">›</text>
+  </g>
+  <text x="60" y="1010" class="txt small muted">Nota: boceto de referencia elaborado a partir de las pantallas implementadas; no constituye evidencia de un boceto fechado antes de iniciar la programación.</text>
+  <text x="60" y="1032" class="txt tiny muted">Elementos y cifras dentro de los cuadros son representativos para ilustrar la estructura, no datos reales.</text>
+</svg>
